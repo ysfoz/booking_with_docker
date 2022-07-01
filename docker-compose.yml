@@ -1,0 +1,35 @@
+version: '3.8'
+services:
+  db:
+    image: mongo
+    restart: always
+    volumes:
+      - data:/data/db
+  api:
+    build: ./api
+    container_name: booking_server
+    ports:
+     - "8080:8080" 
+    # env_file:
+    #  - ./api/.env 
+    # environment: 
+    #   JWT : ${JWT}
+    #   MONGO : ${MONGO}
+    volumes:
+      - ./api:/app
+      - /app/node_modules
+    depends_on:
+      - db
+  client: 
+    build: ./client
+    container_name: booking_react_app
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./client/src:/app/src
+    stdin_open: true
+    tty: true
+    depends_on:
+      - api
+volumes:
+  data:

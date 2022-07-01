@@ -1,5 +1,13 @@
-FROM node:14-slim
-WORKDIR /usr.src/app
+FROM node:18-alpine
+
+WORKDIR /app
+
+COPY package.json .
+
+RUN npm install
+
 COPY . .
-RUN yarn install
-COPY . .
+
+EXPOSE 3000
+
+CMD ["npm", "start"]
