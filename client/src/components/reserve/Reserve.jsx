@@ -63,11 +63,11 @@ const Reserve = ({ setOpenModal, id, days }) => {
         {loading ? (
           <LoadingSpinner />
         ) : (
-          data?.map((room) => (
+          data?.map((room,index) => (
             <SelectRoom
               isAvailable={isAvailable}
               selectedDates={selectedDays}
-              key={room._id}
+              key={index}
               room={room}
               selectedRooms={selectedRooms}
               setSelectedRooms={setSelectedRooms}

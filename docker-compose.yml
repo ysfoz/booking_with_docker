@@ -5,21 +5,22 @@ services:
     restart: always
     volumes:
       - data:/data/db
+    networks:
+      - mern-app
   api:
     build: ./api
     container_name: booking_server
     ports:
      - "8080:8080" 
-    # env_file:
-    #  - ./api/.env 
-    # environment: 
-    #   JWT : ${JWT}
-    #   MONGO : ${MONGO}
+    env_file:
+     - ./api/.env 
     volumes:
       - ./api:/app
       - /app/node_modules
     depends_on:
       - db
+    networks:
+      - mern-app
   client: 
     build: ./client
     container_name: booking_react_app
@@ -31,5 +32,10 @@ services:
     tty: true
     depends_on:
       - api
+    networks:
+      - mern-app
+networks:
+  mern-app:
+    driver: bridge
 volumes:
   data:
