@@ -27,7 +27,7 @@ const SearchBar = () => {
   const [date, setDate] = useState([
     {
       startDate: new Date(),
-      endDate: new Date(),
+      endDate: new Date().setDate(new Date().getDate() + 1),
       key: "selection",
     },
   ]);
@@ -42,7 +42,7 @@ const SearchBar = () => {
 
   const handleSearch = () => {
     dispatch({ type: "NEW_SEARCH", payload: { city, date, options } });
-    navigate("/list", { state: { date, city, options } });
+    navigate("/list"); //{ state: { date, city, options } }
   };
 
   return (
@@ -67,14 +67,14 @@ const SearchBar = () => {
           "dd/MM/yyyy"
         )}`}</DateBox>
       </ButtonContainer>
-        {openDate && (
-          <StyledDateRange
-            editableDateInputs={true}
-            onChange={(item) => setDate([item.selection])}
-            moveRangeOnFirstSelection={false}
-            ranges={date}
-          />
-        )}
+      {openDate && (
+        <StyledDateRange
+          editableDateInputs={true}
+          onChange={(item) => setDate([item.selection])}
+          moveRangeOnFirstSelection={false}
+          ranges={date}
+        />
+      )}
       <ButtonContainer
         onClick={() => {
           setOpenOption((p) => !p);

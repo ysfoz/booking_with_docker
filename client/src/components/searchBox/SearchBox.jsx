@@ -42,9 +42,9 @@ const SearchBox = () => {
     });
   };
 
-  const dateValue = `${format(date[0]?.startDate, "MM/dd/yyyy")} to ${format(
+  const dateValue = `${format(date[0]?.startDate, "dd/MM/yyyy")} to ${format(
     date[0]?.endDate,
-    "MM/dd/yyyy"
+    "dd/MM/yyyy"
   )}`;
 
   return (

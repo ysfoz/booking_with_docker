@@ -22,6 +22,7 @@ const Title = styled.h3`
 `;
 
 const ToastyContainer = styled.div`
+margin-top: 30px;
   background-color: #64ffda;
   width: fit-content;
   padding: 5px;

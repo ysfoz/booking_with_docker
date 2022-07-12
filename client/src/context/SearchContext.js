@@ -6,9 +6,9 @@ const INITIAL_VALUE = {
   city: undefined,
   date: [],
   options: {
-    adult: undefined,
-    children: undefined,
-    rooms: undefined,
+    adult: 1,
+    children: 0,
+    rooms: 1,
   },
 };
 
@@ -17,7 +17,14 @@ export const SearchContext = createContext(INITIAL_VALUE);
 const SearchReducer = (state, action) => {
   switch (action.type) {
     case "NEW_SEARCH":
-      return action.payload;
+      return {
+        ...INITIAL_VALUE,
+        min: action.payload.min,
+        max: action.payload.max,
+        city: action.payload.city,
+        date: action.payload.date,
+        options: action.payload.options,
+      };
     case "RESET_SEARCH":
       return INITIAL_VALUE;
     default:

@@ -19,6 +19,10 @@ const Image = styled.img`
   width: 100%;
   height: 200px;
   ${mobile({ height: "100px" })}
+  :hover {
+    width: 101%;
+    height: 202px;
+  }
 `;
 
 const TitleContainer = styled.div`
@@ -54,7 +58,7 @@ const RatingsContainer = styled.div`
 `;
 
 const Rating = styled.button`
-width: 30px;
+  width: 30px;
   background-color: #003580;
   padding: 2px 4px;
   border-radius: 5px;
