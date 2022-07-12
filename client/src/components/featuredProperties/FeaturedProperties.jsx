@@ -27,15 +27,21 @@ const FeaturedProperties = () => {
   const [date] = useState([
     {
       startDate: new Date(),
-      endDate: new Date().setDate(new Date().getDate() + 1),
+      endDate: new Date(new Date().setDate(new Date()?.getDate() + 1)),
     },
   ]);
+
+  const [options] = useState({
+    adult: 1,
+    children: 0,
+    rooms: 1,
+  });
 
   const { dispatch } = useContext(SearchContext);
 
   const getHotel = (id) => {
     navigate(`/hotel/${id}`);
-    dispatch({ type: "NEW_SEARCH", payload: { date } });
+    dispatch({ type: "NEW_SEARCH", payload: { date,options } });
   };
 
   return (

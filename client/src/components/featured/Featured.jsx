@@ -21,7 +21,7 @@ const Featured = () => {
   const [date] = useState([
     {
       startDate: new Date(),
-      endDate: new Date().setDate(new Date().getDate() + 1),
+      endDate: new Date(new Date().setDate(new Date()?.getDate() + 1)),
     },
   ]);
 
@@ -29,9 +29,15 @@ const Featured = () => {
 
   const navigate = useNavigate();
 
+  const [options] = useState({
+    adult: 1,
+    children: 0,
+    rooms: 1,
+  });
+
   const getHotels = async (city) => {
     navigate("/list", { state: { city: city } });
-    dispatch({ type: "NEW_SEARCH", payload: { city, date } });
+    dispatch({ type: "NEW_SEARCH", payload: { city, date,options } });
   };
 
   return (
